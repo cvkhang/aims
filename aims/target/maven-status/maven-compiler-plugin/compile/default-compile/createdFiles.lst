@@ -22,6 +22,7 @@ com\aims\dao\ProductDAO.class
 com\aims\entity\OrderItem.class
 com\aims\dao\CartDAO.class
 com\aims\view\ProfileFrame.class
+com\aims\util\ValidationUtils.class
 com\aims\entity\Order.class
 com\aims\view\ProductDetailFrame.class
 com\aims\util\DatabaseConnection.class

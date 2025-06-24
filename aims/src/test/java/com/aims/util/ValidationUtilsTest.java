@@ -16,8 +16,8 @@ public class ValidationUtilsTest {
     @Test
     void testNameValidation() {
         assertTrue(ValidationUtils.isValidName("chuvinhkhang"));
-        assertFalse(ValidationUtils.isValidName("ha1234"));
-        assertFalse(ValidationUtils.isValidName("#?Ha"));
+        assertFalse(ValidationUtils.isValidName("khang1234"));
+        assertFalse(ValidationUtils.isValidName("#?Khang"));
         assertTrue(ValidationUtils.isValidName("Chu Vinh Khang"));
         assertTrue(ValidationUtils.isValidName("ChuVinhKhang"));
         assertFalse(ValidationUtils.isValidName(null));
