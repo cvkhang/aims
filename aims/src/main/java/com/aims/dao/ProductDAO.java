@@ -30,11 +30,15 @@ public class ProductDAO {
 	    String role = Session.getRole();
 	    System.out.printf("role %s",role,"\n");
 	    if(!("product_manager".equalsIgnoreCase(role))) {
-	    	sql.append(" AND available = 'YES'");
+	    	sql.append(" AND available = 'yes'");
 	    }
 	    
-	    // Sắp xếp (phải đảm bảo sortColumn và sortOrder là hợp lệ, hoặc lọc trước)
-	    sql.append(" ORDER BY ").append(sortColumn).append(" ").append(sortOrder);
+	    // Chỉ cho phép sort theo các cột hợp lệ
+	    List<String> allowedSortColumns = java.util.Arrays.asList("title", "price");
+	    if (!allowedSortColumns.contains(sortColumn)) sortColumn = "title";
+	    String safeOrder = "ASC";
+	    if (sortOrder != null && sortOrder.equalsIgnoreCase("DESC")) safeOrder = "DESC";
+	    sql.append(" ORDER BY ").append(sortColumn).append(" ").append(safeOrder);
 
 	    // Phân trang: LIMIT và OFFSET
 	    sql.append(" LIMIT 13 OFFSET ?");

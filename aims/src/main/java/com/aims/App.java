@@ -36,6 +36,7 @@ public class App {
 //        frame.add(payButton);
 //        frame.setVisible(true);
     	
+        System.out.println("App started!");
         SwingUtilities.invokeLater(() -> {
             MainFrame frame = new MainFrame();
             frame.setVisible(true);
