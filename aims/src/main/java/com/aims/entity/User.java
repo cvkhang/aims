@@ -10,7 +10,6 @@ public class User {
     private String role;
     private boolean blocked;
     private LocalDateTime createdAt;
-    private String avaiable;
 
     public int getUserId() {
         return userId;

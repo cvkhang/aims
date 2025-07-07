@@ -6,6 +6,7 @@ import com.aims.dao.CartDAO;
 import com.aims.dao.ProductDAO;
 import com.aims.entity.Product;
 import com.aims.util.Session;
+import com.aims.util.ProductManagerConstraints;
 
 import javax.swing.*;
 import java.awt.*;
@@ -89,11 +90,21 @@ public class ProductDetailFrame extends JDialog {
             deleteButton.addActionListener(e -> {
                 int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this product?", "Confirm Delete", JOptionPane.YES_NO_OPTION);
                 if (confirm == JOptionPane.YES_OPTION) {
-                    productController.deleteProduct(product.getProductId(), Session.getCurrentUser().getUserId());
-                    parentFrame.loadProductList();
-                    dispose();
+                    try {
+                        productController.deleteProduct(product.getProductId(), Session.getCurrentUser().getUserId());
+                        parentFrame.loadProductList();
+                        dispose();
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(this, "Error deleting product: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
             });
+            
+            // Add constraint information
+            int remainingQuota = ProductManagerConstraints.getRemainingDailyQuota(Session.getCurrentUser().getUserId());
+            JLabel quotaLabel = new JLabel("Daily quota remaining: " + remainingQuota + "/30");
+            quotaLabel.setForeground(Color.BLUE);
+            managerPanel.add(quotaLabel);
         }
 
         addToCartButton.addActionListener(e -> {

@@ -25,9 +25,7 @@ public class AdminFrame extends JFrame {
         JButton mainButton = new JButton("Home");
         JButton logoutButton = new JButton("Logout");
 
-        mainButton.addActionListener(e -> {
-            dispose();
-        });
+        mainButton.addActionListener(e -> dispose());
         logoutButton.addActionListener(e -> {
             Session.logout();
             new MainFrame().setVisible(true);
@@ -44,28 +42,50 @@ public class AdminFrame extends JFrame {
         JPanel buttonPanel = new JPanel(new FlowLayout());
         JButton addUserButton = new JButton("Add User");
         JButton editUserButton = new JButton("Edit Selected");
+        JButton deleteUserButton = new JButton("Delete Selected");
 
         addUserButton.addActionListener(e -> new AddUserFrame(this).setVisible(true));
-        editUserButton.addActionListener(e -> {
-            int selectedRow = userTable.getSelectedRow();
-            if (selectedRow >= 0) {
-                int userId = (int) userTable.getValueAt(selectedRow, 0);
-                User user = userController.getUserById(userId);
-                new EditUserFrame(this, user).setVisible(true);
-            } else {
-                JOptionPane.showMessageDialog(this, "Please select a user to edit.");
-            }
-        });
+        editUserButton.addActionListener(e -> editSelectedUser());
+        deleteUserButton.addActionListener(e -> deleteSelectedUser());
 
         buttonPanel.add(addUserButton);
         buttonPanel.add(editUserButton);
+        buttonPanel.add(deleteUserButton);
 
-//        add(toolBar, BorderLayout.NORTH);
         add(scrollPane, BorderLayout.CENTER);
         add(buttonPanel, BorderLayout.SOUTH);
 
         userController = new UserController(this, new UserDAO());
         loadUsers();
+    }
+
+    private void editSelectedUser() {
+        int selectedRow = userTable.getSelectedRow();
+        if (selectedRow >= 0) {
+            int userId = (int) userTable.getValueAt(selectedRow, 0);
+            User user = userController.getUserById(userId);
+            new EditUserFrame(this, user).setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Please select a user to edit.");
+        }
+    }
+
+    private void deleteSelectedUser() {
+        int selectedRow = userTable.getSelectedRow();
+        if (selectedRow >= 0) {
+            int userId = (int) userTable.getValueAt(selectedRow, 0);
+            int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this user?", "Confirm Delete", JOptionPane.YES_NO_OPTION);
+            if (confirm == JOptionPane.YES_OPTION) {
+                try {
+                    userController.deleteUser(userId);
+                    JOptionPane.showMessageDialog(this, "User deleted successfully.");
+                } catch (RuntimeException ex) {
+                    JOptionPane.showMessageDialog(this, "Failed to delete user: " + ex.getMessage());
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Please select a user to delete.");
+        }
     }
 
     public void loadUsers() {

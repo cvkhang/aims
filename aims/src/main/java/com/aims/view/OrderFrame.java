@@ -3,7 +3,6 @@ package com.aims.view;
 import com.aims.controller.OrderController;
 import com.aims.dao.OrderDAO;
 import com.aims.entity.Order;
-import com.aims.util.Session;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;

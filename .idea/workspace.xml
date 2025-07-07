@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a7b5b04c-954d-4705-a06e-719073dc457b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/AIMS-SDD v1.3 group 8.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AIMS-SRS v1.2 group 8.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test Plan.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aims/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/aims/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aims/src/main/java/com/aims/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/aims/src/main/java/com/aims/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aims/src/main/java/com/aims/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/aims/src/main/java/com/aims/dao/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aims/src/main/java/com/aims/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/aims/src/main/java/com/aims/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aims/src/main/java/com/aims/util/DatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/aims/src/main/java/com/aims/util/DatabaseConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aims/src/main/java/com/aims/view/AddUserFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/aims/src/main/java/com/aims/view/AddUserFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aims/src/main/java/com/aims/view/AdminFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/aims/src/main/java/com/aims/view/AdminFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aims/src/main/java/com/aims/view/EditUserFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/aims/src/main/java/com/aims/view/EditUserFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aims/src/main/java/com/aims/view/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/aims/src/main/java/com/aims/view/MainFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aims/src/main/java/com/aims/view/OrderFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/aims/src/main/java/com/aims/view/OrderFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aims/target/aims-1.0-SNAPSHOT.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aims/target/classes/com/aims/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/aims/target/classes/com/aims/controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aims/target/classes/com/aims/dao/UserDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/aims/target/classes/com/aims/dao/UserDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aims/target/classes/com/aims/entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/aims/target/classes/com/aims/entity/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aims/target/classes/com/aims/util/DatabaseConnection.class" beforeDir="false" afterPath="$PROJECT_DIR$/aims/target/classes/com/aims/util/DatabaseConnection.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aims/target/classes/com/aims/view/AddUserFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/aims/target/classes/com/aims/view/AddUserFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aims/target/classes/com/aims/view/AdminFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/aims/target/classes/com/aims/view/AdminFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aims/target/classes/com/aims/view/CartFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/aims/target/classes/com/aims/view/CartFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aims/target/classes/com/aims/view/EditUserFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/aims/target/classes/com/aims/view/EditUserFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aims/target/classes/com/aims/view/MainFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/aims/target/classes/com/aims/view/MainFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aims/target/classes/com/aims/view/OrderFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/aims/target/classes/com/aims/view/OrderFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aims/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aims/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/aims/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aims/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/aims/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aims/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aims/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aims/target/original-aims-1.0-SNAPSHOT.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aims/target/surefire-reports/2025-06-25T03-29-32_166.dumpstream" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aims/target/surefire-reports/TEST-com.aims.entity.ProductTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aims/target/surefire-reports/TEST-com.aims.model.ShippingFeeCalculatorTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aims/target/surefire-reports/TEST-com.aims.util.ValidationUtilsTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aims/target/surefire-reports/com.aims.entity.ProductTest.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aims/target/surefire-reports/com.aims.model.ShippingFeeCalculatorTest.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aims/target/surefire-reports/com.aims.util.ValidationUtilsTest.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aims/target/test-classes/com/aims/entity/ProductTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aims/target/test-classes/com/aims/model/ShippingFeeCalculatorTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/aims/target/test-classes/com/aims/util/ValidationUtilsTest.class" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;cvkhang&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/cvkhang/aims.git&quot;,
+    &quot;accountId&quot;: &quot;c462be6f-aecf-4aad-9f81-5d108f7e91f7&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2zUkGvpr2IRyJKr33U63KdhK0rC" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "D:/STUDY/HUST/Subject/ITSS/btl/aims",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="aims" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="aims" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="aims" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="Python.FlaskServer">
+      <module name="aims" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="Tox" factoryName="Tox">
+      <module name="aims" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.26927.53" />
+        <option value="bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-IU-251.26927.53" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a7b5b04c-954d-4705-a06e-719073dc457b" name="Changes" comment="" />
+      <created>1751792948009</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1751792948009</updated>
+      <workItem from="1751792949273" duration="3115000" />
+      <workItem from="1751808693899" duration="2086000" />
+      <workItem from="1751844687990" duration="2137000" />
+      <workItem from="1751849096064" duration="124000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

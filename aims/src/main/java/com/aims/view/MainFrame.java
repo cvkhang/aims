@@ -2,10 +2,9 @@ package com.aims.view;
 
 import com.aims.controller.ProductController;
 import com.aims.dao.ProductDAO;
-import com.aims.entity.Product;
 import com.aims.util.Session;
 import com.aims.util.DatabaseConnection;
-import com.aims.model.Conste;
+import com.aims.util.ProductManagerConstraints;
 
 
 import javax.swing.*;
@@ -198,6 +197,10 @@ public class MainFrame extends JFrame {
             JButton addProductButton = new JButton("Add Product");
             addProductButton.addActionListener(e -> new AddProductFrame(this).setVisible(true));
             leftPanel.add(addProductButton);
+            
+            JButton bulkDeleteButton = new JButton("Bulk Delete");
+            bulkDeleteButton.addActionListener(e -> showBulkDeleteDialog());
+            leftPanel.add(bulkDeleteButton);
         }
         if (Session.isLoggedIn() && Session.getRole() != null && Session.getRole().equals("ADMIN")) {
             leftPanel.add(adminButton);
@@ -290,5 +293,52 @@ public class MainFrame extends JFrame {
 
     public ProductController getProductController() {
         return productController;
+    }
+    
+    private void showBulkDeleteDialog() {
+        if (!Session.isLoggedIn() || !Session.getRole().equals("PRODUCT_MANAGER")) {
+            JOptionPane.showMessageDialog(this, "Only Product Managers can perform bulk delete operations.", "Access Denied", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        // Show constraint information
+        int remainingQuota = ProductManagerConstraints.getRemainingDailyQuota(Session.getCurrentUser().getUserId());
+        String message = "Daily delete/update quota remaining: " + remainingQuota + "/30\n\n";
+        message += "You can delete up to 10 products at once.\n";
+        message += "Enter product IDs separated by commas:";
+        
+        String input = JOptionPane.showInputDialog(this, message, "Bulk Delete Products", JOptionPane.QUESTION_MESSAGE);
+        
+        if (input != null && !input.trim().isEmpty()) {
+            try {
+                String[] productIdStrings = input.split(",");
+                List<Integer> productIds = new ArrayList<>();
+                
+                for (String idStr : productIdStrings) {
+                    int productId = Integer.parseInt(idStr.trim());
+                    productIds.add(productId);
+                }
+                
+                if (productIds.size() > 10) {
+                    JOptionPane.showMessageDialog(this, "Cannot delete more than 10 products at once.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                
+                int confirm = JOptionPane.showConfirmDialog(this, 
+                    "Are you sure you want to delete " + productIds.size() + " products?\nThis action cannot be undone.", 
+                    "Confirm Bulk Delete", JOptionPane.YES_NO_OPTION);
+                
+                if (confirm == JOptionPane.YES_OPTION) {
+                    productController.deleteMultipleProducts(productIds, Session.getCurrentUser().getUserId());
+                    loadProductList();
+                    JOptionPane.showMessageDialog(this, "Successfully deleted " + productIds.size() + " products.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                }
+                
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Invalid product ID format. Please enter valid numbers separated by commas.", "Error", JOptionPane.ERROR_MESSAGE);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Error deleting products: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }
 }

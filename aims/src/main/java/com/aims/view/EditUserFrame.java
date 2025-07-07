@@ -59,8 +59,31 @@ public class EditUserFrame extends JFrame {
     }
 
     private void saveUser() {
-        user.setEmail(emailField.getText().trim());
-        user.setPassword(new String(passwordField.getPassword()).trim());
+        String email = emailField.getText().trim();
+        String password = new String(passwordField.getPassword()).trim();
+        String username = user.getUsername(); // username is not editable
+
+        // Username length
+        if (username.length() < 3 || username.length() > 50) {
+            JOptionPane.showMessageDialog(this, "Username must be between 3 and 50 characters.");
+            return;
+        }
+        // Email format
+        String emailRegex = "^[A-Za-z0-9+_.-]+@(.+)$";
+        if (!email.matches(emailRegex)) {
+            JOptionPane.showMessageDialog(this, "Invalid email format.");
+            return;
+        }
+        // Password length (allow empty for no change)
+        if (!password.isEmpty() && (password.length() < 6 || password.length() > 100)) {
+            JOptionPane.showMessageDialog(this, "Password must be between 6 and 100 characters.");
+            return;
+        }
+
+        user.setEmail(email);
+        if (!password.isEmpty()) {
+            user.setPassword(password);
+        }
         user.setRole((String) roleComboBox.getSelectedItem());
         user.setBlocked(blockedCheckBox.isSelected());
 

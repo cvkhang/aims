@@ -10,8 +10,6 @@ import java.time.LocalDateTime;
 
 public class AddUserFrame extends JDialog {
     private UserController userController;
-    private User user;
-
     private JTextField usernameField;
     private JTextField emailField;
     private JPasswordField passwordField;
@@ -19,15 +17,10 @@ public class AddUserFrame extends JDialog {
     private JCheckBox blockedCheck;
 
     public AddUserFrame(AdminFrame parentFrame) {
-        this(parentFrame, null);
-    }
-
-    public AddUserFrame(AdminFrame parentFrame, User user) {
         super(parentFrame, true);
-        this.user = user;
         this.userController = new UserController(parentFrame, new UserDAO());
 
-        setTitle(user == null ? "Add User" : "Edit User");
+        setTitle("Add User");
         setSize(400, 350);
         setLocationRelativeTo(parentFrame);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -42,25 +35,17 @@ public class AddUserFrame extends JDialog {
         blockedCheck = new JCheckBox("Blocked");
 
         mainPanel.add(new JLabel("Username:"));
-        if (user != null) {
-            usernameField.setText(user.getUsername());
-            usernameField.setEditable(false); // không cho sửa username
-        }
         mainPanel.add(usernameField);
-
         mainPanel.add(new JLabel("Email:"));
         mainPanel.add(emailField);
-
         mainPanel.add(new JLabel("Password:"));
         mainPanel.add(passwordField);
-
         mainPanel.add(new JLabel("Role:"));
         mainPanel.add(roleCombo);
-
         mainPanel.add(new JLabel("Blocked:"));
         mainPanel.add(blockedCheck);
 
-        JButton saveButton = new JButton(user == null ? "Add" : "Save");
+        JButton saveButton = new JButton("Add");
         JButton cancelButton = new JButton("Cancel");
 
         saveButton.addActionListener(e -> saveUser());
@@ -70,50 +55,53 @@ public class AddUserFrame extends JDialog {
         mainPanel.add(cancelButton);
 
         add(mainPanel);
-
-        if (user != null) {
-            emailField.setText(user.getEmail());
-            passwordField.setText(user.getPassword());
-            roleCombo.setSelectedItem(user.getRole());
-            blockedCheck.setSelected(user.isBlocked());
-        }
     }
 
     private void saveUser() {
         try {
-            if (usernameField.getText().trim().isEmpty() || emailField.getText().trim().isEmpty()) {
+            String username = usernameField.getText().trim();
+            String email = emailField.getText().trim();
+            String password = new String(passwordField.getPassword()).trim();
+
+            // Username and email required
+            if (username.isEmpty() || email.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Username and Email are required.");
                 return;
             }
-
-            if (user == null) {
-                // Add user
-                User newUser = new User();
-                newUser.setUsername(usernameField.getText().trim());
-                newUser.setEmail(emailField.getText().trim());
-                newUser.setPassword(new String(passwordField.getPassword()).trim().isEmpty()
-                        ? "default_password" : new String(passwordField.getPassword()).trim()); // đặt mật khẩu mặc định nếu rỗng
-                newUser.setRole((String) roleCombo.getSelectedItem());
-                newUser.setBlocked(blockedCheck.isSelected());
-                newUser.setCreatedAt(LocalDateTime.now());
-
-                userController.addUser(newUser);
-            } else {
-                // Edit user
-                user.setEmail(emailField.getText().trim());
-                user.setPassword(new String(passwordField.getPassword()).trim());
-                user.setRole((String) roleCombo.getSelectedItem());
-                user.setBlocked(blockedCheck.isSelected());
-
-                userController.updateUser(user);
+            // Username length
+            if (username.length() < 3 || username.length() > 50) {
+                JOptionPane.showMessageDialog(this, "Username must be between 3 and 50 characters.");
+                return;
             }
+            // Email format
+            String emailRegex = "^[A-Za-z0-9+_.-]+@(.+)$";
+            if (!email.matches(emailRegex)) {
+                JOptionPane.showMessageDialog(this, "Invalid email format.");
+                return;
+            }
+            // Password length
+            if (password.length() < 6 || password.length() > 100) {
+                JOptionPane.showMessageDialog(this, "Password must be between 6 and 100 characters.");
+                return;
+            }
+
+            // Add user
+            User newUser = new User();
+            newUser.setUsername(username);
+            newUser.setEmail(email);
+            newUser.setPassword(password);
+            newUser.setRole((String) roleCombo.getSelectedItem());
+            newUser.setBlocked(blockedCheck.isSelected());
+            newUser.setCreatedAt(LocalDateTime.now());
+
+            userController.addUser(newUser);
 
             ((AdminFrame) getOwner()).loadUsers();
             dispose();
 
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Failed to save user: " + ex.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Failed to save user: " + e.getMessage());
         }
     }
 }

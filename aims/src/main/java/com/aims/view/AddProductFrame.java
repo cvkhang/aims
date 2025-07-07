@@ -3,6 +3,7 @@ package com.aims.view;
 import com.aims.controller.ProductController;
 import com.aims.entity.Product;
 import com.aims.util.Session;
+import com.aims.util.ProductManagerConstraints;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,6 +26,7 @@ public class AddProductFrame extends JDialog {
     // Trường cho DVD
     private JTextField directorField, runtimeField, studioField, dvdLanguageField, subtitlesField, discTypeField;
     private JPanel bookPanel, cdPanel, dvdPanel, dynamicPanel;
+    private JLabel constraintInfoLabel;
 
     public AddProductFrame(MainFrame parentFrame) {
         this(parentFrame, null);
@@ -89,6 +91,21 @@ public class AddProductFrame extends JDialog {
         formPanel.add(commonPanel, BorderLayout.NORTH);
         formPanel.add(dynamicPanel, BorderLayout.CENTER);
 
+        // Add constraint information for product managers
+        if (Session.getRole() != null && Session.getRole().equals("PRODUCT_MANAGER")) {
+            JPanel constraintPanel = new JPanel(new GridLayout(2, 1, 5, 5));
+            constraintPanel.setBorder(BorderFactory.createTitledBorder("Daily Limits"));
+            
+            constraintInfoLabel = new JLabel();
+            updateConstraintInfo();
+            constraintPanel.add(constraintInfoLabel);
+            
+            JLabel resetTimeLabel = new JLabel("Reset time: " + ProductManagerConstraints.getTimeUntilReset());
+            constraintPanel.add(resetTimeLabel);
+            
+            formPanel.add(constraintPanel, BorderLayout.SOUTH);
+        }
+
         JPanel buttonPanel = new JPanel(new FlowLayout());
         JButton saveButton = new JButton("Save");
         JButton cancelButton = new JButton("Cancel");
@@ -100,6 +117,13 @@ public class AddProductFrame extends JDialog {
 
         add(new JScrollPane(formPanel), BorderLayout.CENTER);
         add(buttonPanel, BorderLayout.SOUTH);
+    }
+    
+    private void updateConstraintInfo() {
+        if (Session.getRole() != null && Session.getRole().equals("PRODUCT_MANAGER")) {
+            int remainingQuota = ProductManagerConstraints.getRemainingDailyQuota(Session.getCurrentUser().getUserId());
+            constraintInfoLabel.setText("Remaining daily quota: " + remainingQuota + "/30");
+        }
     }
 
     private JPanel createBookPanel() {
@@ -392,12 +416,25 @@ public class AddProductFrame extends JDialog {
                 newProduct.setCreatedAt(LocalDateTime.now());
                 newProduct.setUpdatedAt(LocalDateTime.now());
                 productController.addProduct(newProduct, Session.getCurrentUser().getUserId());
+                JOptionPane.showMessageDialog(this, "Product added successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 newProduct.setUpdatedAt(LocalDateTime.now());
                 productController.updateProduct(newProduct, Session.getCurrentUser().getUserId());
+                
+                // Show price update information for product managers
+                if (Session.getRole() != null && Session.getRole().equals("PRODUCT_MANAGER")) {
+                    int remainingUpdates = ProductManagerConstraints.getRemainingPriceUpdates(
+                        Session.getCurrentUser().getUserId(), product.getProductId());
+                    String message = "Product updated successfully!";
+                    if (remainingUpdates < 2) {
+                        message += "\nRemaining price updates today: " + remainingUpdates;
+                    }
+                    JOptionPane.showMessageDialog(this, message, "Success", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Product updated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                }
             }
-
-            JOptionPane.showMessageDialog(this, "Product saved successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+            
             parentFrame.loadProductList();
             dispose();
 

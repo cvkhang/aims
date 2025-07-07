@@ -6,6 +6,7 @@ import com.aims.entity.CartItem;
 import com.aims.entity.Product;
 import com.aims.util.Session;
 import com.aims.util.DatabaseConnection;
+import com.aims.util.ProductManagerConstraints;
 
 import javax.swing.*;
 import java.awt.*;
@@ -120,7 +121,13 @@ public class ProductPanel extends JPanel {
                 String toggleLabel = product.getAvailable().equalsIgnoreCase("yes") ? "Hide" : "Show";
                 JButton toggleButton = new JButton(toggleLabel);
 
-                editButton.addActionListener(e -> new AddProductFrame(mainFrame, product).setVisible(true));
+                editButton.addActionListener(e -> {
+                    try {
+                        new AddProductFrame(mainFrame, product).setVisible(true);
+                    } catch (Exception ex) {
+                        JOptionPane.showMessageDialog(this, "Error opening edit form: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                });
 
                 toggleButton.addActionListener(e -> {
                     int confirm = JOptionPane.showConfirmDialog(

@@ -3,22 +3,16 @@ package com.aims.controller;
 import com.aims.dao.UserDAO;
 import com.aims.entity.User;
 import com.aims.view.AdminFrame;
-import com.aims.view.MainFrame;
 
 import java.util.List;
 import javax.swing.JFrame;
 
 public class UserController {
-    private AdminFrame adminView;
-    private MainFrame mainView;
-    private UserDAO userDAO;
+    private final AdminFrame adminView;
+    private final UserDAO userDAO;
 
     public UserController(JFrame view, UserDAO userDAO) {
-        if (view instanceof AdminFrame) {
-            this.adminView = (AdminFrame) view;
-        } else if (view instanceof MainFrame) {
-            this.mainView = (MainFrame) view;
-        }
+        this.adminView = view instanceof AdminFrame ? (AdminFrame) view : null;
         this.userDAO = userDAO;
     }
 
@@ -40,11 +34,8 @@ public class UserController {
             if (adminView != null) {
                 adminView.loadUsers();
             }
-            if (mainView != null) {
-                mainView.loadProductList();
-            }
         } catch (RuntimeException e) {
-            throw new RuntimeException("Failed to add user: " + e.getMessage());
+            throw new RuntimeException("Failed to add user: " + e.getMessage(), e);
         }
     }
 
@@ -55,7 +46,7 @@ public class UserController {
                 adminView.loadUsers();
             }
         } catch (RuntimeException e) {
-            throw new RuntimeException("Failed to update user: " + e.getMessage());
+            throw new RuntimeException("Failed to update user: " + e.getMessage(), e);
         }
     }
 
@@ -66,7 +57,7 @@ public class UserController {
                 adminView.loadUsers();
             }
         } catch (RuntimeException e) {
-            throw new RuntimeException("Failed to delete user: " + e.getMessage());
+            throw new RuntimeException("Failed to delete user: " + e.getMessage(), e);
         }
     }
 
@@ -77,7 +68,7 @@ public class UserController {
                 adminView.loadUsers();
             }
         } catch (RuntimeException e) {
-            throw new RuntimeException("Failed to reset password: " + e.getMessage());
+            throw new RuntimeException("Failed to reset password: " + e.getMessage(), e);
         }
     }
 
@@ -88,7 +79,7 @@ public class UserController {
                 adminView.loadUsers();
             }
         } catch (RuntimeException e) {
-            throw new RuntimeException("Failed to toggle block status: " + e.getMessage());
+            throw new RuntimeException("Failed to toggle block status: " + e.getMessage(), e);
         }
     }
 }

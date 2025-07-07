@@ -28,6 +28,7 @@ com\aims\view\ProductDetailFrame.class
 com\aims\util\DatabaseConnection.class
 com\aims\controller\OrderController.class
 com\aims\util\DatabaseTest.class
+com\aims\util\ProductManagerConstraints.class
 com\aims\view\AddUserFrame.class
 com\aims\App.class
 com\aims\view\CartFrame.class
